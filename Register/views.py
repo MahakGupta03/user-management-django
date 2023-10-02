@@ -2,8 +2,36 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.models import User
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
+@api_view(['GET', 'POST', 'PATCH'])
+def home(request):
+    if request.method == 'GET':
+        return Response({
+            'status' : 200,
+            'message' : 'yes!! django rest framework is working',
+            'method' : "GET"
+        })
+    elif request.method == 'POST':
+        return Response({
+            'status' : 200,
+            'message' : 'yes!! django rest framework is working',
+            'method' : "POST"
+        })
+    elif request.method == 'PATCH':
+        return Response({
+            'status' : 200,
+            'message' : 'yes!! django rest framework is working',
+            'method' : "PATCH"
+        })
+    else :
+        return Response({
+            'status' : 400,
+            'message' : 'yes!! django rest framework is working',
+            'method' : "Invalid"
+        })
 
 def register(request):
     if request.method == 'POST':
